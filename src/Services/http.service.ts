@@ -19,4 +19,8 @@ export class HttpService {
   getStudentById(id: string): Observable<Student> {
     return this.http.get<Student>(`${this.apiEndpoint}/${id}`);
   }
+
+  addStudentData(studentData: any): Observable<Student> {
+    return this.http.post<Student>(this.apiEndpoint, studentData);
+  }
 }

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { StudentDetailsComponent } from './Components/student-details/student-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddDataComponent } from './Components/add-data/add-data.component';
 
 
 @NgModule({
@@ -13,12 +15,14 @@ import { StudentDetailsComponent } from './Components/student-details/student-de
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    StudentDetailsComponent
+    StudentDetailsComponent,
+    AddDataComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
