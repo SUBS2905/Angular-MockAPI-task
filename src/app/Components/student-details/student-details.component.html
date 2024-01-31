@@ -1,0 +1,52 @@
+<div class="container-fluid h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-md-8">
+      <div class="container py-5">
+        <div class="row flex justify-content-center" *ngIf="student">
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ student.name }}</h5>
+                <p class="card-text">
+                  <strong>Department:</strong> {{ student.department }}
+                </p>
+                <p class="card-text">
+                  <strong>Email:</strong> {{ student.email }}
+                </p>
+                <p class="card-text"><strong>Marks:</strong></p>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <strong>Mark 1:</strong> {{ student.mark1 }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Mark 2:</strong> {{ student.mark2 }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Mark 3:</strong> {{ student.mark3 }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Mark 4:</strong> {{ student.mark4 }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Mark 5:</strong> {{ student.mark5 }}
+                  </li>
+                </ul>
+                <p class="card-text">
+                  <strong>Total:</strong> {{ student.total }}
+                </p>
+                <p class="card-text">
+                  <strong>Average:</strong> {{ student.average }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="!student">
+            <div class="alert alert-info" role="alert">
+              No student details available.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
