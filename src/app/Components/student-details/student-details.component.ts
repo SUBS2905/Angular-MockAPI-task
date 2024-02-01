@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from 'src/Services/http.service';
-import Student from 'src/app/Models/student';
+import { StudentService } from 'src/Services/student.service';
+import Student from 'src/app/Models/Student';
 
 @Component({
   selector: 'app-student-details',
@@ -13,16 +13,15 @@ export class StudentDetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private httpService: HttpService
+    private studentService: StudentService
   ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const studentId = params.get('id');
       if (studentId) {
-        this.httpService.getStudentById(studentId).subscribe((res) => {
+        this.studentService.getStudentById(studentId).subscribe((res) => {
           this.student = res;
-          console.log(res);
         });
       }
     });

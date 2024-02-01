@@ -1,5 +1,5 @@
 export default interface Student {
-  id: string;
+  id?: string;
   name: string;
   department: string;
   email: string;
@@ -11,3 +11,4 @@ export default interface Student {
   total: number;
   average: number;
 }
+

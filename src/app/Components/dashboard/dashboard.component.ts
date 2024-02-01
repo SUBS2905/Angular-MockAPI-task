@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpService } from 'src/Services/http.service';
-import Student from 'src/app/Models/student';
+import { StudentService } from 'src/Services/student.service';
+import Student from 'src/app/Models/Student';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,19 +11,33 @@ import Student from 'src/app/Models/student';
 export class DashboardComponent {
   studentDetails: Student[] = [];
 
-  constructor(private httpService: HttpService, private router: Router) {}
+  constructor(private studentService: StudentService, private router: Router) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.fetchStudentDetailsAll();
   }
 
-  fetchStudentDetailsAll(){
-    this.httpService.getData().subscribe(res => {
+  fetchStudentDetailsAll(): void {
+    this.studentService.getData().subscribe((res) => {
       this.studentDetails = res;
-    })
+    });
   }
 
-  showStudentDetails(id: string) {
-      this.router.navigate(['/student-detail', id]);
+  showStudentDetails(id?: string): void {
+    this.router.navigate(['/student-detail', id]);
+  }
+
+  editStudentDetails(id: string): void{
+    this.router.navigate(['/edit-detail', id]);
+  }
+
+  deleteStudentDetails(id: string): void {
+    this.studentService.deleteStudentData(id).subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.log(err),
+
+      //How to reload the page to populate the updated data
+      complete: () => this.router.navigateByUrl('/'),
+    });
   }
 }

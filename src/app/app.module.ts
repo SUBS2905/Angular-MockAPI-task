@@ -8,6 +8,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { StudentDetailsComponent } from './Components/student-details/student-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddDataComponent } from './Components/add-data/add-data.component';
+import { EditDataComponent } from './Components/edit-data/edit-data.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AddDataComponent } from './Components/add-data/add-data.component';
     NavbarComponent,
     DashboardComponent,
     StudentDetailsComponent,
-    AddDataComponent
+    AddDataComponent,
+    EditDataComponent
   ],
   imports: [
     BrowserModule,

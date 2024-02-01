@@ -7,7 +7,11 @@
               <h5 class="card-title">{{ student.name }}</h5>
               <p class="card-text"><i>Department: </i>{{ student.department }}</p>
               <p class="card-text"><i>Email: </i>{{ student.email }}</p>
-              <button class="btn btn-primary" (click)="showStudentDetails(student.id)">Show Details</button>
+              <div class="d-flex gap-3">
+                <button class="btn btn-primary" (click)="showStudentDetails(student.id)">Show Details</button>
+                <button class="btn btn-success" (click)="editStudentDetails(student.id)">Edit Details</button>
+                <button class="btn btn-danger" (click)="deleteStudentDetails(student.id)">Delete Details</button>
+              </div>
             </div>
           </div>
         </div>

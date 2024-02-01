@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpService } from 'src/Services/http.service';
-import Student from './Models/student';
+import { StudentService } from 'src/Services/student.service';
+import Student from './Models/Student';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +10,11 @@ import Student from './Models/student';
 export class AppComponent {
   title = 'Angular-MockAPI-Task';
   studentDetails: Student[] = [];
-  constructor(private http: HttpService) {}
+  constructor(private http: StudentService) {}
 
   ngOnInit(){
     this.http.getData().subscribe((res) => {
       this.studentDetails = res;
-      // console.log(this.studentDetails);
     });
   }
-  // getData() {
-  // }
-
 }

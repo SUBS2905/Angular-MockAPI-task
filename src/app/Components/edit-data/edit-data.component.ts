@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/Services/student.service';
+import StudentPostData from 'src/app/Models/StudentPostData';
 
 @Component({
-  selector: 'app-add-data',
-  templateUrl: './add-data.component.html',
-  styleUrls: ['./add-data.component.css'],
+  selector: 'app-edit-data',
+  templateUrl: './edit-data.component.html',
+  styleUrls: ['./edit-data.component.css'],
 })
-export class AddDataComponent {
+export class EditDataComponent {
   studentForm!: FormGroup;
+  studentId: string;
 
   constructor(
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private studentService: StudentService,
     private router: Router
   ) {}
 
   ngOnInit() {
+    this.route.paramMap.subscribe((params) => {
+      this.studentId = params.get('id');
+    });
+
     this.studentForm = this.formBuilder.group({
       name: ['', Validators.required],
       department: ['', Validators.required],
@@ -31,6 +38,7 @@ export class AddDataComponent {
       average: 0,
     });
   }
+
   calculateTotalAndAverage() {
     const mark1 = this.studentForm.get('mark1')?.value || 0;
     const mark2 = this.studentForm.get('mark2')?.value || 0;
@@ -46,18 +54,15 @@ export class AddDataComponent {
 
   onSubmit() {
     this.calculateTotalAndAverage();
-    // console.log(this.studentForm.value);
-
-    if (this.studentForm.valid) {
-      this.studentService
-        .addStudentData(this.studentForm.value)
-        .subscribe((res) => {
-          console.log(res);
-          alert('Data added successfully!');
+    this.studentService
+      .editStudentDetails(this.studentForm.value, this.studentId)
+      .subscribe({
+        next: (res) => console.log(res),
+        error: (err) => console.log(err),
+        complete: () => {
+          alert('Details edited successfully');
           this.router.navigateByUrl('/');
-        });
-    } else {
-      this.studentForm.markAllAsTouched();
-    }
+        },
+      });
   }
 }
